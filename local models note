@@ -1,0 +1,12 @@
+See: https://github.com/huggingface/text-generation-inference/issues/311
+
+Sample code:
+
+    cd /data
+
+    # Make sure you have git lfs installed
+    git clone https://huggingface.co/google/flan-t5-xl
+
+    # note the `--network none` that makes sure that we cannot connect to hf.co inside the running container
+    # note the `--model-id /data/flan-t5-xl` that points to the previously download model 
+    docker run --rm --network none --gpus all -p 8080:80 -v /data:/data --pull always  ghcr.io/huggingface/text-generation-inference:latest --model-id /data/flan-t5-xl
